@@ -10,13 +10,14 @@ import pl.myhibernateapp.model.Book;
 @ComponentScan
 public class SpringJpaApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringJpaApplication.class);
 		BookDao bookDao = ctx.getBean(BookDao.class);
 		Book book = new Book("1234567890468", "Spring is so cool", "Javastart");
         bookDao.save(book);
         Book bookGet = bookDao.get(1L);
         System.out.println(bookGet);
+        Thread.sleep(5000);
         ctx.close();
 		
 	}
